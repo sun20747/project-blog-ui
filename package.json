@@ -1,0 +1,32 @@
+{
+  "name": "mui-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "GA=MyGAcode next dev -p 5000",
+    "build": "GA=MyGAcode next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.3",
+    "@mui/material": "^5.0.3",
+    "@reduxjs/toolkit": "^1.7.1",
+    "axios": "^0.24.0",
+    "dotenv": "^12.0.3",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
+    "sweetalert2": "^11.3.6",
+    "swr": "^1.1.2"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "prettier": "^2.4.1"
+  }
+}
