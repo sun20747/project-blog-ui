@@ -35,7 +35,7 @@ export default function Myblog(props) {
   };
 
   const deletePost = () => {
-    fetcherWithToken(`http://localhost:3000/api/v1/blog/destroy/${id}`, {
+    fetcherWithToken(`http://192.168.1.199/api/v1/blog/destroy/${id}`, {
       method: "DELETE",
     })
       .then((res) => {

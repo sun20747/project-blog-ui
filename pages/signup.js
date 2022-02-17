@@ -250,15 +250,16 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
+            <Link passHref={true} href="/">
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+            </Link>
             <Grid container justifyContent="flex-start">
               <Grid item>
                 <Link href="/login" variant="body2">

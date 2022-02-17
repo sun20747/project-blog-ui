@@ -92,7 +92,7 @@ export default function LayoutAdmin({ children }) {
     // revalidateOnFocus: true,
   };
   const { data, error } = useSWR(
-    "http://127.0.0.1:3000/api/v1/admin/show_users_waiting",
+    "http://192.168.1.199/api/v1/admin/show_users_waiting",
     fetcherWithToken,
     options
   );
