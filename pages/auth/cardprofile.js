@@ -15,8 +15,10 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import useCurruntUser from "@/lib/hooks/useCurrentUser";
-import { Badge, Grid } from "@mui/material";
+import { Badge, Dialog, DialogTitle, Grid, TextField } from "@mui/material";
 import taskDate from "../module/taskdate";
+import date from '../module/data'
+import Editname from "./editname";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -58,23 +60,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function CardProfile() {
   const [expanded, setExpanded] = React.useState(false);
   const { currenUser, fetcherWithToken } = useCurruntUser();
-  
-//   const [Agent, setAgent] = useState({});
-//   useEffect(() => {
-//     const Agent_ = JSON.parse(localStorage.getItem("ally-supports-cache"));
-//     setAgent(Agent_)
-
-//   }, []);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <Card sx={{ maxWidth: "lg" }}>
+    <Card elevation={2} sx={{ maxWidth: "lg" }}>
       <CardMedia
         component="img"
         height="150"
@@ -99,7 +94,9 @@ export default function RecipeReviewCard() {
             >
               <Avatar
                 alt="Remy Sharp"
-                src={currenUser == null ? null : `${currenUser?.photo}`}
+                src={
+                  currenUser == null ? null : `${currenUser?.user_profile_img}`
+                }
                 sx={{ width: 120, height: 120 }}
               />
             </StyledBadge>
@@ -116,12 +113,10 @@ export default function RecipeReviewCard() {
       >
         <Grid item></Grid>
         <Grid item>
-          <div>
-            <Typography variant="h6">
-              {currenUser?.f_name}
-              {`  ${currenUser?.l_name}`}
-            </Typography>
-          </div>
+          <Typography variant="h6">
+            {currenUser?.f_name}
+            {`  ${currenUser?.l_name}`}
+          </Typography>
         </Grid>
         <Grid item></Grid>
       </Grid>
@@ -143,7 +138,7 @@ export default function RecipeReviewCard() {
       <CardContent></CardContent>
       <CardActions disableSpacing>
         {/* <IconButton aria-label="add to favorites"> */}
-          <FavoriteIcon />
+        <FavoriteIcon />
         {/* </IconButton> */}
         {/* <IconButton aria-label="share">
           <ShareIcon />
@@ -161,15 +156,14 @@ export default function RecipeReviewCard() {
         <CardContent>
           <hr />
           <Typography paragraph>
-            Profile Created At: {taskDate(currenUser?.created_at)}
+            Profile Created At: {currenUser ? date(currenUser?.created_at) : null}
           </Typography>
 
           <Typography paragraph>
-            Profile Updated At: {taskDate(currenUser?.updated_at)}
+            Profile Updated At: {currenUser ? date(currenUser?.updated_at) : null}
           </Typography>
 
-          
-          
+          <Editname></Editname>
         </CardContent>
       </Collapse>
     </Card>

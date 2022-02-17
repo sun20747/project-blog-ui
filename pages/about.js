@@ -5,6 +5,8 @@ export default function About() {
 
     <DefaultLayout>
       about page
+      <hr/>
+      Atit Khaoeam
     </DefaultLayout>
   );
 }

@@ -1,24 +1,28 @@
 import DefaultLayout from "@/components/layouts/Default";
 import * as React from "react";
 import { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import {
+  Box,
+  Grid,
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Container,
+  Typography,
+  FormHelperText,
+} from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import axios from "../axios.config";
 import { useDispatch } from "react-redux";
 import { setToken } from "@/lib/store/session";
 import { useRouter } from "next/router";
-import Swal from 'sweetalert2'
-
+import Swal from "sweetalert2";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 
 function Copyright(props) {
   return (
@@ -27,66 +31,84 @@ function Copyright(props) {
       color="text.secondary"
       align="center"
       {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
+    ></Typography>
   );
 }
 
-function al(){
+function err(_error) {
+  const { error } = _error.data;
+  console.log(error);
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: `${error}`,
+  });
+}
+
+function al() {
   const Toast = Swal.mixin({
     toast: true,
-    position: 'bottom-start',
+    position: "bottom-start",
     showConfirmButton: false,
     timer: 2500,
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
-  
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
   Toast.fire({
-    icon: 'success',
-    title: 'Signed in successfully'
-  })
+    icon: "success",
+    title: "Signed in successfully",
+  });
 }
 
 export default function Login() {
-  const [email, setEmail] = useState("atit@gmail.com");
-  const [password, setPassword] = useState("12341234");
+  const [chackBox, setChackBox] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const onChackBox = () => {
+    setChackBox(!chackBox);
+  };
+
+  const submit = async (event) => {
     const body = JSON.stringify({
       user: {
-        email,
-        password,
+        email: event.email.toLowerCase(),
+        password: event.password,
       },
     });
-
     await axios
       .post("/api/v1/user/sign_in", body)
       .then((res) => {
         // console.log(res.data.jwt);
         dispatch(setToken(res.data.jwt));
-        al()
+        al();
         router.replace("/auth/profile");
       })
       .catch(function (error) {
         if (error.response) {
-          console.log(error.response);
+          err(error.response);
+          // console.log(error.response);
         }
       });
   };
 
+  const { register, handleSubmit, errors } = useForm({
+    mode: "onBlur",
+    validationSchema: yup.object().shape({
+      email: yup.string().email().required(),
+      password: yup.string().required(),
+    }),
+  });
+  // React.useEffect(() => {
+  //   console.log(errors.checkbox?.message);
+  // }, [errors]);
+
+  // React.useEffect(() => {
+  //   console.log(chackBox);
+  // }, [chackBox]);
 
   return (
     <DefaultLayout>
@@ -106,44 +128,39 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
+
+          <form
+            onSubmit={handleSubmit(submit)}
+            autoComplete="off"
             sx={{ mt: 1 }}
           >
             <TextField
               margin="normal"
-              required
               fullWidth
               id="email"
               label="Email Address"
               name="email"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              // value={"atit@gmail.com"}
+              inputRef={register}
+              helperText={errors.email?.message || " "}
+              error={!!errors.email} //!! เช็ค true || false
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              // value={"12341234"}
+              inputRef={register}
+              helperText={errors.password?.message || " "}
+              error={!!errors.password}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary"/>}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth
@@ -153,21 +170,29 @@ export default function Login() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
-          </Box>
+          </form>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </DefaultLayout>
   );
 }
+
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   console.log("server");
+
+//   // Pass data to the page via props
+//   return { props: {} }
+// }

@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -20,11 +21,12 @@ import Switch from "@mui/material/Switch";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import useCurrentUser from "@/lib/hooks/useCurrentUser";
-import { setDarkMode } from "@/lib/store/session";
+import { setDarkMode, setCategory } from "@/lib/store/session";
 import { Avatar, Collapse } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Popover from "@mui/material/Popover";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
+import router from "next/router";
 
 // switch code
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -84,7 +86,7 @@ export default function ButtonAppBar() {
   const [drawer, setDrawer] = useState(false);
   const darkMode = useSelector((state) => state.session.darkMode);
   const dispatch = useDispatch();
-  const { logout, currenUser } = useCurrentUser();
+  const { logout, currenUser, token } = useCurrentUser();
 
   // useEffect(() => {
   //   // blogs.map((blog)=>{
@@ -126,6 +128,19 @@ export default function ButtonAppBar() {
     });
   }
 
+  const clearCategory = () => {
+    dispatch(setCategory(null));
+  };
+
+  useEffect(() => {
+    async function chackUser() {
+      if (!localStorage.getItem("jwt")) {
+        router.push(`/login`, undefined, { shallow: true });
+      }
+    }
+    chackUser();
+  }, [currenUser, token]);
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -145,7 +160,7 @@ export default function ButtonAppBar() {
             </IconButton>
 
             <Link passHref={true} href="/">
-              <Button color="inherit" variant="text">
+              <Button color="inherit" variant="text" onClick={clearCategory}>
                 <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                   204 No Content
                 </Typography>
@@ -165,7 +180,14 @@ export default function ButtonAppBar() {
 
             <div>
               <Button aria-describedby={id} onClick={handleClick_1}>
-                <Avatar alt="Remy Sharp" src={currenUser == null ? null : `${currenUser?.photo}`} />
+                <Avatar
+                  alt="Remy Sharp"
+                  src={
+                    currenUser == null
+                      ? null
+                      : `${currenUser?.user_profile_img}`
+                  }
+                />
               </Button>
               <Popover
                 id={id}
@@ -187,9 +209,7 @@ export default function ButtonAppBar() {
                       >
                         {currenUser?.email}
                       </Typography>
-                      <Typography
-                        variant="button" display="block" gutterBottom
-                      >
+                      <Typography variant="button" display="block" gutterBottom>
                         {currenUser?.f_name}
                         {currenUser?.l_name}
                       </Typography>
@@ -207,7 +227,7 @@ export default function ButtonAppBar() {
                       </ListItemButton>
                     </Link>
                   </ListItem>
-                  
+
                   <ListItem disablePadding onClick={logout}>
                     <Link passHref={true} href="/login">
                       <ListItemButton>
@@ -218,7 +238,6 @@ export default function ButtonAppBar() {
                       </ListItemButton>
                     </Link>
                   </ListItem>
-
                 </List>
               </Popover>
             </div>

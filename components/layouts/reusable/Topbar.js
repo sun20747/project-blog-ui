@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -19,8 +20,8 @@ import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { setDarkMode } from "@/lib/store/session";
-import loading from 'pages/module/loading'
+import { setDarkMode, setCategory } from "@/lib/store/session";
+import loading from "pages/module/loading";
 
 // switch code
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -89,10 +90,14 @@ export default function ButtonAppBar() {
   //   console.log(darkMode);
   // }, [darkMode]);
 
+  const clearCategory = () => {
+    dispatch(setCategory(null));
+  };
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" sx={{paddingX: "15px",paddingY: "3px"}}>
+        <AppBar position="fixed" sx={{ paddingX: "15px", paddingY: "3px" }}>
           <Toolbar variant="dense">
             <IconButton
               size="large"
@@ -108,7 +113,7 @@ export default function ButtonAppBar() {
             </IconButton>
 
             <Link passHref={true} href="/">
-              <Button color="inherit" variant="text">
+              <Button color="inherit" variant="text" onClick={clearCategory}>
                 <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                   204 No Content
                 </Typography>
