@@ -21,7 +21,7 @@ export default function userwaitingconfirmed() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   React.useEffect(() => {
-    fetcherWithToken("http://192.168.1.199/api/v1/admin/show_users_waiting", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users_waiting", {
       method: "GET",
     })
       .then((json) => {
@@ -33,7 +33,7 @@ export default function userwaitingconfirmed() {
   }, [currenUser]);
 
   function getDataUser() {
-    fetcherWithToken("http://192.168.1.199/api/v1/admin/show_users_waiting", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users_waiting", {
       method: "GET",
     })
       .then((json) => {
@@ -55,7 +55,7 @@ export default function userwaitingconfirmed() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetcherWithToken(
-          `http://192.168.1.199/api/v1/admin/deleteuserwarining/${id}`,
+          `http://node-js.thddns.net:4661/api/v1/admin/deleteuserwarining/${id}`,
           {
             method: "DELETE",
           }
@@ -87,7 +87,7 @@ export default function userwaitingconfirmed() {
       title: "Confirm in successfully",
     }).then(() => {
       fetcherWithToken(
-        `http://192.168.1.199/api/v1/admin/confirmeduser/${id}`,
+        `http://node-js.thddns.net:4661/api/v1/admin/confirmeduser/${id}`,
         {
           method: "POST",
         }

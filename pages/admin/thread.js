@@ -33,7 +33,7 @@ function Row({ row, id, page, rowsPerPage, setBlogs }) {
   // }, [setBlogs]);
 
   function getDataBlog() {
-    fetcherWithToken("http://192.168.1.199/api/v1/blog/blogs", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/blog/blogs", {
       method: "GET",
     })
       .then((json) => {
@@ -57,7 +57,7 @@ function Row({ row, id, page, rowsPerPage, setBlogs }) {
     }).then((result) => {
       if (result.isConfirmed) {
         fetcherWithToken(
-          `http://192.168.1.199/api/v1/admin/deleteblog/${id}`,
+          `http://node-js.thddns.net:4661/api/v1/admin/deleteblog/${id}`,
           {
             method: "DELETE",
           }

@@ -11,7 +11,7 @@ export default function Dashboard() {
   const [data, setData] = useState([]);
   const { fetcherWithToken } = useCurruntAdmin();
   useEffect(() => {
-    fetcherWithToken("http://192.168.1.199/api/v1/admin/dashboard", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/dashboard", {
       method: "GET",
     })
       .then((json) => {

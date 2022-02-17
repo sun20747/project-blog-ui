@@ -56,7 +56,7 @@ export default function ResponsiveDialog() {
         l_name,
       },
     });
-    fetcherWithToken("http://192.168.1.199/api/v1/user/update", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/user/update", {
       method: "PUT",
       body,
     })

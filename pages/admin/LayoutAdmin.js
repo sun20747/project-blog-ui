@@ -100,7 +100,7 @@ export default function LayoutAdmin({ children }) {
     // revalidateOnFocus: true,
   };
   const { data, error } = useSWR(
-    "http://192.168.1.199/api/v1/admin/show_users_waiting",
+    "http://node-js.thddns.net:4661/api/v1/admin/show_users_waiting",
     fetcherWithToken,
     options
   );

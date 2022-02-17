@@ -29,7 +29,7 @@ export default function user() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   React.useEffect(() => {
-    fetcherWithToken("http://192.168.1.199/api/v1/admin/show_users", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users", {
       method: "GET",
     })
       .then((json) => {
@@ -41,7 +41,7 @@ export default function user() {
   }, [currenUser]);
 
   function getDataUser() {
-    fetcherWithToken("http://127.0.0.1:3000/api/v1/admin/show_users", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users", {
       method: "GET",
     })
       .then((json) => {
@@ -104,7 +104,7 @@ export default function user() {
         text: "Reset password is successfully!",
       }).then(() => {
         fetcherWithToken(
-          `http://192.168.1.199/api/v1/admin/resetpasswd/${id}`,
+          `http://node-js.thddns.net:4661/api/v1/admin/resetpasswd/${id}`,
           {
             method: "PUT",
             body,
