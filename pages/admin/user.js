@@ -64,7 +64,7 @@ export default function user() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetcherWithToken(
-          `http://localhost:3000/api/v1/admin/deliteuserwhichblog/${id}`,
+          `http://node-js.thddns.net:4661/api/v1/admin/deliteuserwhichblog/${id}`,
           {
             method: "DELETE",
           }

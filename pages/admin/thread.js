@@ -204,7 +204,7 @@ export default function CollapsibleTable() {
   };
 
   React.useEffect(() => {
-    fetcherWithToken("http://192.168.1.199/api/v1/blog/blogs", {
+    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/blog/blogs", {
       method: "GET",
     })
       .then((json) => {
