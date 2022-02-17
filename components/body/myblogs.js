@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { red } from "@mui/material/colors";
 import {
   Card,
@@ -16,20 +16,21 @@ import {
   MenuItem,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import taskDate from "@/pages/module/taskdate";
+import taskDate from "@/module/taskdate";
 import { useRouter } from "next/router";
 import useCurruntUser from "@/lib/hooks/useCurrentUser";
-import EditPost from "./editpost";
+import EditPost from "../../pages/auth/editpost";
 
 export default function Myblog(props) {
   const { currenUser, fetcherWithToken } = useCurruntUser();
-  const { f_name, user_profile_img } = currenUser;
+  const { f_name = null, user_profile_img } = currenUser;
   const { id, photo, created_at, content, ...data } = props.blog;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -51,7 +52,7 @@ export default function Myblog(props) {
 
   const router = useRouter();
   const toDetails = () => {
-    router.push(`/details/${id}`, undefined, { shallow: true });
+    router.push(`/details/${id}`, { shallow: true });
   };
 
   // React.useEffect(() => {

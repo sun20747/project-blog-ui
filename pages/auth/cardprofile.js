@@ -16,8 +16,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import useCurruntUser from "@/lib/hooks/useCurrentUser";
 import { Badge, Dialog, DialogTitle, Grid, TextField } from "@mui/material";
-import taskDate from "../module/taskdate";
-import date from '../module/data'
+import taskDate from "../../module/taskdate";
+import date from '../../module/data'
 import Editname from "./editname";
 
 const ExpandMore = styled((props) => {

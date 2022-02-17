@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import { Badge, CardActionArea, Chip, Grid } from "@mui/material";
-import taskDate from "@/pages/module/taskdate";
+import taskDate from "@/module/taskdate";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 

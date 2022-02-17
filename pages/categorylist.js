@@ -16,7 +16,7 @@ import {
 
 import { styled } from "@mui/material/styles";
 
-import CategoryItem from "./categoryitem";
+import CategoryItem from "../components/body/categoryitem";
 
 const CATEGORIES = [
   {

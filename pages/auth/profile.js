@@ -5,7 +5,7 @@ import useCurruntUser from "@/lib/hooks/useCurrentUser";
 import router from "next/router";
 import { Container, CssBaseline, Grid } from "@mui/material";
 import Cradprofile from "./cardprofile";
-import Myblogs from "./myblogs";
+import Myblogs from "../../components/body/myblogs";
 import Newpost from "./newpost";
 
 export default function Profile() {

@@ -18,7 +18,7 @@ import useCurruntAdmin from "@/lib/hooks/useCurrentAdmin";
 import { Avatar, Chip, TablePagination } from "@mui/material";
 import { red } from "@mui/material/colors";
 import DeleteIcon from "@mui/icons-material/Delete";
-import date from "@/pages/module/data";
+import date from "@/module/data";
 import Swal from "sweetalert2";
 
 function Row({ row, id, page, rowsPerPage, setBlogs }) {

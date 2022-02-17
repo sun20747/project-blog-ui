@@ -111,9 +111,9 @@ export default function userwaitingconfirmed() {
     setPage(0);
   };
 
-  React.useEffect(() => {
-    console.log(users);
-  }, [users]);
+  // React.useEffect(() => {
+  //   console.log(users);
+  // }, [users]);
 
   const columns = [
     { id: "id", label: "#ID", maxWidth: 50 },

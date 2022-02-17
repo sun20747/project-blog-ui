@@ -21,7 +21,7 @@ import Switch from "@mui/material/Switch";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { setDarkMode, setCategory } from "@/lib/store/session";
-import loading from "pages/module/loading";
+import loading from "@/module/loading";
 
 // switch code
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({

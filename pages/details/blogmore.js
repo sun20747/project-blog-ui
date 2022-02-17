@@ -13,7 +13,7 @@ import {
 import { red } from "@mui/material/colors";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import taskDate from "../module/taskdate";
+import taskDate from "../../module/taskdate";
 
 export default function blogmore({
   id,

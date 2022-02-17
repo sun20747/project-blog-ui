@@ -21,7 +21,8 @@ import { green, red } from "@mui/material/colors";
 import router from "next/router";
 
 function err(_error) {
-  const index = _error.data.errors.email[0];
+  // const index = _error?.data?.errors?.email[0];
+
   Swal.fire({
     icon: "error",
     title: "Oops...",
@@ -92,10 +93,10 @@ export default function SignUp() {
           al();
         })
         .catch(function (error) {
-          if (error.response) {
-            // console.log(error.response);
+          if (error.response.data != "") {
             err(error.response);
           }
+          al();
         })
         .catch((err) => {
           console.log("ERROR", err);
@@ -250,16 +251,16 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            <Link passHref={true} href="/">
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign Up
-              </Button>
-            </Link>
+            {/* <Link passHref={true} href="/"> */}
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+            {/* </Link> */}
             <Grid container justifyContent="flex-start">
               <Grid item>
                 <Link href="/login" variant="body2">
