@@ -19,6 +19,7 @@ import axios from "axios.config";
 import Swal from "sweetalert2";
 import { green, red } from "@mui/material/colors";
 import router from "next/router";
+import serverimgurl from "@/server.config";
 
 function err(_error) {
   // const index = _error?.data?.errors?.email[0];
@@ -83,7 +84,7 @@ export default function SignUp() {
           email: event.email,
           password: event.password,
           confirmpassword: event.confirmpassword,
-          user_profile_img: `/user_profile/${res.files.file.originalFilename}`,
+          user_profile_img: `${serverimgurl}/user_profile/${res.filename}`,
         },
       });
       await axios
@@ -134,10 +135,11 @@ export default function SignUp() {
     const body = new FormData();
     // console.log("file", image)
     body.append("file", image);
-    const response = await fetch("/api/upload/user_profile", {
+    const response = await fetch(`${serverimgurl}/upload/user_profile`, {
       method: "POST",
       body,
     });
+    // console.log(response);
     submit(response, event);
   };
 

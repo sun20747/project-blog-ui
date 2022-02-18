@@ -55,12 +55,9 @@ export default function userwaitingconfirmed() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetcherWithToken(
-          `${url}/api/v1/admin/deleteuserwarining/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetcherWithToken(`${url}/api/v1/admin/deleteuserwarining/${id}`, {
+          method: "DELETE",
+        })
           .then((json) => {
             //call function
             getDataUser();
@@ -87,12 +84,9 @@ export default function userwaitingconfirmed() {
       icon: "success",
       title: "Confirm in successfully",
     }).then(() => {
-      fetcherWithToken(
-        `${url}/api/v1/admin/confirmeduser/${id}`,
-        {
-          method: "POST",
-        }
-      )
+      fetcherWithToken(`${url}/api/v1/admin/confirmeduser/${id}`, {
+        method: "POST",
+      })
         .then((json) => {
           //call function
           getDataUser();
@@ -113,7 +107,11 @@ export default function userwaitingconfirmed() {
   };
 
   // React.useEffect(() => {
-  //   console.log(users);
+  //   console.log(
+  //     users?.map((user) => {
+  //       // console.log(user.user_profile_img);
+  //     })
+  //   );
   // }, [users]);
 
   const columns = [
@@ -174,7 +172,10 @@ export default function userwaitingconfirmed() {
                       tabIndex={-1}
                       key={user.id}
                     >
-                      <TableCell sx={{ minWidth: 170 }}> {page * rowsPerPage + i + 1}</TableCell>
+                      <TableCell sx={{ minWidth: 170 }}>
+                        {" "}
+                        {page * rowsPerPage + i + 1}
+                      </TableCell>
                       <TableCell sx={{ minWidth: 170 }} align="center">
                         <Avatar
                           alt="Remy Sharp"

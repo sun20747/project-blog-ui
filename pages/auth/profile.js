@@ -13,7 +13,6 @@ export default function Profile() {
   const token = useSelector((state) => state.session.token);
   const { currenUser, fetcherWithToken } = useCurruntUser();
 
-
   // useEffect(()=>{
   //   setBlogs(currenUser?.user_blogs);
   // })

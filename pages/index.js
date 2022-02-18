@@ -25,18 +25,18 @@ export default function Index() {
     const { data } = await axios.get(
       `/api/v1/blog/blogs?limit=${count}&offset=0`
     );
-    setLoading(true);
+    // setLoading(true);
     setBlogs(data);
-    setLoading(false);
+    // setLoading(false);
   };
 
   const getData = async () => {
     const { data } = await axios.get(
       `/api/v1/blog/blogs?limit=${count}&offset=0&category=${category}`
     );
-    setLoading(!loading);
+    // setLoading(true);
     setBlogs(data);
-    setLoading(!loading);
+    // setLoading(false);
   };
 
   useEffect(() => {

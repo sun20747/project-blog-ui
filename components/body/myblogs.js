@@ -24,7 +24,7 @@ import Image from "next/image";
 import url from "@/fetch.config";
 
 export default function Myblog(props) {
-  const { currenUser } = useCurruntUser();
+  const { currenUser, fetcherWithToken } = useCurruntUser();
   const { f_name = null, user_profile_img } = currenUser;
   const { id, photo, created_at, content, ...data } = props.blog;
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -54,7 +54,7 @@ export default function Myblog(props) {
 
   const router = useRouter();
   const toDetails = () => {
-    router.push(`/details/${id}`, { shallow: true });
+    router.push(`/details/${id}`, null, { shallow: true });
   };
 
   // React.useEffect(() => {

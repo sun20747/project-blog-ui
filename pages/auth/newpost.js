@@ -21,6 +21,7 @@ import {
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import useCurrentUser from "@/lib/hooks/useCurrentUser";
+import serverimgurl from "@/server.config";
 
 export default function Newpost({ data }) {
   const [title, setTitle] = useState();
@@ -29,10 +30,13 @@ export default function Newpost({ data }) {
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
   const [open, setOpen] = React.useState(false);
+
+  // console.log(category);
+
   const { token } = useCurrentUser();
   const createPost = () => {
     setTitle(null);
-    setCategory(null);
+    setCategory("Code");
     setContent(null);
     setOpen(!open);
     setImage(null);
@@ -54,13 +58,14 @@ export default function Newpost({ data }) {
     response
       .json()
       .then(async (res) => {
+        // console.log(res.filename);
         // photo: `/post/${res.files.file.originalFilename}`,
         const data = JSON.stringify({
           blog: {
             title,
             content,
             category,
-            photo: `/post/${res.files.file.originalFilename}`,
+            photo: `${serverimgurl}/post/${res.filename}`,
           },
         });
         const config = {
@@ -128,10 +133,11 @@ export default function Newpost({ data }) {
     const body = new FormData();
     // console.log("file", image)
     body.append("file", image);
-    const response = await fetch("/api/upload/post", {
+    const response = await fetch(`${serverimgurl}/upload/post`, {
       method: "POST",
       body,
     });
+    // console.log(response);
     post(response);
   };
 
@@ -209,14 +215,14 @@ export default function Newpost({ data }) {
                   <Grid item>
                     <FormControl fullWidth sx={{ minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-label">
-                        Category
+                        {"Category" && category}
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        label="Category"
+                        // label={"Category" && category}
                         onChange={handleChange}
-                        value={category}
+                        // value={category}
                       >
                         <MenuItem value={`Code`}>Code</MenuItem>
                         <MenuItem value={`Linux`}>Linux</MenuItem>

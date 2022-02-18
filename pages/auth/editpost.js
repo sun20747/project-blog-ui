@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import useCurrentUser from "@/lib/hooks/useCurrentUser";
 import axios from "axios.config";
+import serverimgurl from "@/server.config";
 
 export default function AlertDialog({ dataPost }) {
   const { token } = useCurrentUser();
@@ -76,7 +77,7 @@ export default function AlertDialog({ dataPost }) {
             title,
             content,
             category,
-            photo: `/post/${res.files.file.originalFilename}`,
+            photo: `${serverimgurl}/post/${res.filename}`,
           },
         });
         const config = {
@@ -116,11 +117,11 @@ export default function AlertDialog({ dataPost }) {
     const body = new FormData();
     body.append("file", image);
     // image ? postWhichImage(response) : post;
-    const response = await fetch("/api/upload/post", {
+    const response = await fetch(`${serverimgurl}/upload/post`, {
       method: "POST",
       body,
     });
-    postWhichImage(response)
+    postWhichImage(response);
     // post(response);
   };
 
@@ -134,6 +135,7 @@ export default function AlertDialog({ dataPost }) {
   //   const handleClose = () => {
   //     setOpen(false);
   //   };
+  // console.log(category);
 
   return (
     <div>
@@ -179,12 +181,12 @@ export default function AlertDialog({ dataPost }) {
                   <Grid item>
                     <FormControl fullWidth sx={{ minWidth: 200 }}>
                       <InputLabel id="demo-simple-select-label">
-                        Category
+                        {"Category" && category}
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        // label="Category"
+                        // label={"Category" && category}
                         onChange={handleChange}
                       >
                         <MenuItem value={`Code`}>Code</MenuItem>
