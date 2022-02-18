@@ -20,6 +20,7 @@ import { red } from "@mui/material/colors";
 import DeleteIcon from "@mui/icons-material/Delete";
 import date from "@/module/data";
 import Swal from "sweetalert2";
+import url from "@/fetch.config";
 
 function Row({ row, id, page, rowsPerPage, setBlogs }) {
   const { fetcherWithToken } = useCurruntAdmin();
@@ -33,7 +34,7 @@ function Row({ row, id, page, rowsPerPage, setBlogs }) {
   // }, [setBlogs]);
 
   function getDataBlog() {
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/blog/blogs", {
+    fetcherWithToken(`${url}/api/v1/blog/blogs`, {
       method: "GET",
     })
       .then((json) => {
@@ -57,7 +58,7 @@ function Row({ row, id, page, rowsPerPage, setBlogs }) {
     }).then((result) => {
       if (result.isConfirmed) {
         fetcherWithToken(
-          `http://node-js.thddns.net:4661/api/v1/admin/deleteblog/${id}`,
+          `${url}/api/v1/admin/deleteblog/${id}`,
           {
             method: "DELETE",
           }
@@ -204,7 +205,7 @@ export default function CollapsibleTable() {
   };
 
   React.useEffect(() => {
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/blog/blogs", {
+    fetcherWithToken(`${url}/api/v1/blog/blogs`, {
       method: "GET",
     })
       .then((json) => {

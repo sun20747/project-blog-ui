@@ -6,12 +6,14 @@ import { Box } from "@mui/system";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
+import url from "@/fetch.config";
+
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
   const { fetcherWithToken } = useCurruntAdmin();
   useEffect(() => {
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/dashboard", {
+    fetcherWithToken(`${url}/api/v1/admin/dashboard`, {
       method: "GET",
     })
       .then((json) => {

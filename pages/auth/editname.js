@@ -12,6 +12,7 @@ import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import useCurruntUser from "@/lib/hooks/useCurrentUser";
+import url from '@/fetch.config'
 
 function al() {
   const Toast = Swal.mixin({
@@ -56,7 +57,7 @@ export default function ResponsiveDialog() {
         l_name,
       },
     });
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/user/update", {
+    fetcherWithToken(`${url}/api/v1/user/update`, {
       method: "PUT",
       body,
     })

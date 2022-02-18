@@ -20,9 +20,11 @@ import taskDate from "@/module/taskdate";
 import { useRouter } from "next/router";
 import useCurruntUser from "@/lib/hooks/useCurrentUser";
 import EditPost from "../../pages/auth/editpost";
+import Image from "next/image";
+import url from "@/fetch.config";
 
 export default function Myblog(props) {
-  const { currenUser, fetcherWithToken } = useCurruntUser();
+  const { currenUser } = useCurruntUser();
   const { f_name = null, user_profile_img } = currenUser;
   const { id, photo, created_at, content, ...data } = props.blog;
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,13 +32,13 @@ export default function Myblog(props) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   const deletePost = () => {
-    fetcherWithToken(`http://node-js.thddns.net:4661/api/v1/blog/destroy/${id}`, {
+    fetcherWithToken(`${url}/api/v1/blog/destroy/${id}`, {
       method: "DELETE",
     })
       .then((res) => {

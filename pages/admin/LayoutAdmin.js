@@ -33,6 +33,7 @@ import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import BookIcon from "@mui/icons-material/Book";
 import HourglassTopIcon from "@mui/icons-material/HourglassTop";
+import url from "@/fetch.config";
 
 import {
   ListItemButton,
@@ -100,7 +101,7 @@ export default function LayoutAdmin({ children }) {
     // revalidateOnFocus: true,
   };
   const { data, error } = useSWR(
-    "http://node-js.thddns.net:4661/api/v1/admin/show_users_waiting",
+    `${url}/api/v1/admin/show_users_waiting`,
     fetcherWithToken,
     options
   );

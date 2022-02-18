@@ -134,7 +134,7 @@ export default function SignUp() {
     const body = new FormData();
     // console.log("file", image)
     body.append("file", image);
-    const response = await fetch("/api/upload/user_profile", {
+    const response = await fetch("http://localhost:5000/api/upload/user_profile", {
       method: "POST",
       body,
     });

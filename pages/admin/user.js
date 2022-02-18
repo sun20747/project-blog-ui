@@ -21,6 +21,7 @@ import { red } from "@mui/material/colors";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
+import url from "@/fetch.config";
 
 export default function user() {
   const { fetcherWithToken, currenUser } = useCurruntAdmin();
@@ -29,7 +30,7 @@ export default function user() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   React.useEffect(() => {
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users", {
+    fetcherWithToken(`${url}/api/v1/admin/show_users`, {
       method: "GET",
     })
       .then((json) => {
@@ -41,7 +42,7 @@ export default function user() {
   }, [currenUser]);
 
   function getDataUser() {
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users", {
+    fetcherWithToken(`${url}/api/v1/admin/show_users`, {
       method: "GET",
     })
       .then((json) => {
@@ -64,7 +65,7 @@ export default function user() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetcherWithToken(
-          `http://node-js.thddns.net:4661/api/v1/admin/deliteuserwhichblog/${id}`,
+          `${url}/api/v1/admin/deliteuserwhichblog/${id}`,
           {
             method: "DELETE",
           }
@@ -104,7 +105,7 @@ export default function user() {
         text: "Reset password is successfully!",
       }).then(() => {
         fetcherWithToken(
-          `http://node-js.thddns.net:4661/api/v1/admin/resetpasswd/${id}`,
+          `${url}/api/v1/admin/resetpasswd/${id}`,
           {
             method: "PUT",
             body,

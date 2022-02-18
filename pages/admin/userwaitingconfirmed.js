@@ -14,6 +14,7 @@ import { red } from "@mui/material/colors";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
 import Swal from "sweetalert2";
+import url from "@/fetch.config";
 
 export default function userwaitingconfirmed() {
   const { fetcherWithToken, currenUser } = useCurruntAdmin();
@@ -21,7 +22,7 @@ export default function userwaitingconfirmed() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   React.useEffect(() => {
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users_waiting", {
+    fetcherWithToken(`${url}/api/v1/admin/show_users_waiting`, {
       method: "GET",
     })
       .then((json) => {
@@ -33,7 +34,7 @@ export default function userwaitingconfirmed() {
   }, [currenUser]);
 
   function getDataUser() {
-    fetcherWithToken("http://node-js.thddns.net:4661/api/v1/admin/show_users_waiting", {
+    fetcherWithToken(`${url}/api/v1/admin/show_users_waiting`, {
       method: "GET",
     })
       .then((json) => {
@@ -55,7 +56,7 @@ export default function userwaitingconfirmed() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetcherWithToken(
-          `http://node-js.thddns.net:4661/api/v1/admin/deleteuserwarining/${id}`,
+          `${url}/api/v1/admin/deleteuserwarining/${id}`,
           {
             method: "DELETE",
           }
@@ -87,7 +88,7 @@ export default function userwaitingconfirmed() {
       title: "Confirm in successfully",
     }).then(() => {
       fetcherWithToken(
-        `http://node-js.thddns.net:4661/api/v1/admin/confirmeduser/${id}`,
+        `${url}/api/v1/admin/confirmeduser/${id}`,
         {
           method: "POST",
         }
