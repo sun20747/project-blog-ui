@@ -19,7 +19,7 @@ export default async (req, res) => {
             console.log(fields, files)
             console.log(files.file.filepath)
             var oldPath = files.file.filepath;
-            var newPath = `./public/user_profile/${files.file.originalFilename}`;
+            var newPath = `/home/ubuntu/img/public/user_profile/${files.file.originalFilename}`;
             mv(oldPath, newPath, function(err) {
             });
             res.status(200).json({ fields, files })

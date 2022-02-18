@@ -83,7 +83,7 @@ export default function SignUp() {
           email: event.email,
           password: event.password,
           confirmpassword: event.confirmpassword,
-          user_profile_img: `http://node-js.thddns.net:4662/user_profile/${res.files.file.originalFilename}`,
+          user_profile_img: `/user_profile/${res.files.file.originalFilename}`,
         },
       });
       await axios
@@ -134,7 +134,7 @@ export default function SignUp() {
     const body = new FormData();
     // console.log("file", image)
     body.append("file", image);
-    const response = await fetch("http://node-js.thddns.net:4662/api/upload/user_profile", {
+    const response = await fetch("/api/upload/user_profile", {
       method: "POST",
       body,
     });
