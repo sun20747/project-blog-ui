@@ -13,7 +13,9 @@ import {
   CardMedia,
   Button,
   Menu,
+  Box,
   MenuItem,
+  Chip,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import taskDate from "@/module/taskdate";
@@ -26,7 +28,7 @@ import url from "@/fetch.config";
 export default function Myblog(props) {
   const { currenUser, fetcherWithToken } = useCurruntUser();
   const { f_name = null, user_profile_img } = currenUser;
-  const { id, photo, created_at, content, ...data } = props.blog;
+  const { id, photo, created_at,title, content,category, ...data } = props.blog;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -93,7 +95,7 @@ export default function Myblog(props) {
           title={f_name}
           subheader={taskDate(created_at)}
         />
-        <CardActionArea sx={{ maxHeight: 400 }} onClick={toDetails}>
+        <CardActionArea sx={{ maxHeight: 300 }} onClick={toDetails}>
           <CardMedia
             component="img"
             height="194"
@@ -101,11 +103,45 @@ export default function Myblog(props) {
             alt="Paella dish"
           />
           <CardContent sx={{ height: 200 }}>
-            <Typography variant="body2" color="text.secondary">
-              {content}
-            </Typography>
+
+          <div style={{ width: 300, whiteSpace: 'nowrap' }}>
+          <Box
+          component="div"
+          sx={{
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          }}
+          >
+
+          <Typography variant="h6" color="text.secondary">
+          {title}
+          </Typography>
+          </Box>
+
+
+          <Box
+          component="div"
+          sx={{
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          }}
+          >
+          <Typography variant="body2" color="text.secondary">
+            {content}
+          </Typography>
+            ...
+          </Box>
+          </div>
+
           </CardContent>
-          <CardActions disableSpacing></CardActions>
+          <CardActions disableSpacing>
+            <Chip
+              label={category}
+              size="small"
+              color="success"
+              variant="outlined"
+            />
+          </CardActions>
         </CardActionArea>
       </Card>
     </Grid>

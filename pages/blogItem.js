@@ -11,6 +11,7 @@ import { Badge, CardActionArea, Chip, Grid } from "@mui/material";
 import taskDate from "@/module/taskdate";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
+import Box from '@mui/material/Box';
 
 export default function blogItem({
   id,
@@ -89,12 +90,34 @@ export default function blogItem({
             alt="Paella dish"
           />
           <CardContent sx={{ height: 130 }}>
+            <div style={{ width: 300, whiteSpace: 'nowrap' }}>
+            <Box
+            component="div"
+            sx={{
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            }}
+            >
             <Typography variant="h6" color="text.secondary">
-              {title}
+            {title}
             </Typography>
+            </Box>
+
+
+            <Box
+            component="div"
+            sx={{
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            }}
+            >
             <Typography variant="body2" color="text.secondary">
               {content}
             </Typography>
+              ...
+            </Box>
+            </div>
+
           </CardContent>
           <CardActions disableSpacing>
             <Chip

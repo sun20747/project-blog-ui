@@ -171,6 +171,7 @@ export default function AlertDialog({ dataPost }) {
                     <TextField
                       variant="outlined"
                       placeholder="Title"
+                      inputProps={{maxLength :40}}
                       multiline
                       value={title}
                       onChange={(e) => {
@@ -207,6 +208,7 @@ export default function AlertDialog({ dataPost }) {
                   rows={10}
                   rowsMax={10}
                   sx={{ minWidth: 300 }}
+                  inputProps={{maxLength :400}}
                   value={content}
                   onChange={(e) => {
                     setContent(e.target.value);

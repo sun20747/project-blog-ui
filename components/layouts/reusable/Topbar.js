@@ -115,7 +115,7 @@ export default function ButtonAppBar() {
             <Link passHref={true} href="/">
               <Button color="inherit" variant="text" onClick={clearCategory}>
                 <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                  204 No Content
+                  Dev Board
                 </Typography>
               </Button>
             </Link>

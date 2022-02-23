@@ -10,7 +10,7 @@ import {
   Chip,
   Avatar,
   CardHeader,
-  Container,
+  Container,Box,
 } from "@mui/material";
 import { useTheme } from "@mui/system";
 import { useMediaQuery } from "@mui/material";
@@ -107,12 +107,14 @@ export default function Details() {
                   <Grid item>
                     <MyGrid container direction="column">
                       <Grid item>
-                        <Typography variant="h4" component="h1">
-                          {blog.title}
-                        </Typography>
-                        <Typography flexWrap={true} variant="body1">
-                          {blog.content}
-                        </Typography>
+                      <Typography variant="h6" color="text.secondary">
+                      {blog.title}
+                      </Typography>
+
+                      <Typography variant="body2" color="text.secondary">
+                        {blog.content}
+                      </Typography>
+
                       </Grid>
                       <Grid item>
                         <Grid
@@ -181,12 +183,13 @@ export default function Details() {
                   <Grid item>
                     <MyGrid container direction="column">
                       <Grid item>
-                        <Typography variant="h4" component="h1">
-                          {blog.title}
-                        </Typography>
-                        <Typography flexWrap={true} variant="body1">
-                          {blog.content}
-                        </Typography>
+                      <Typography variant="h6" color="text.secondary">
+                      {blog.title}
+                      </Typography>
+
+                      <Typography variant="body2" color="text.secondary">
+                        {blog.content}
+                      </Typography>
                       </Grid>
                       <Grid item>
                         <Grid

@@ -207,6 +207,7 @@ export default function Newpost({ data }) {
                       placeholder="Title"
                       multiline
                       value={title}
+                      inputProps={{maxLength :40}}
                       onChange={(e) => {
                         setTitle(e.target.value);
                       }}
@@ -242,6 +243,7 @@ export default function Newpost({ data }) {
                   rows={10}
                   rowsMax={10}
                   sx={{ minWidth: 300 }}
+                  inputProps={{maxLength :400}}
                   value={content}
                   onChange={(e) => {
                     setContent(e.target.value);

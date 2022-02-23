@@ -8,7 +8,7 @@ import {
   CardMedia,
   Chip,
   Grid,
-  Typography,
+  Typography,Box,
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { useRouter } from "next/router";
@@ -53,12 +53,31 @@ export default function blogmore({
             alt="Paella dish"
           />
           <CardContent sx={{ height: 130 }}>
-            <Typography variant="h6" color="text.secondary">
-              {title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {content}
-            </Typography>
+          <div style={{ width: 300, whiteSpace: 'nowrap' }}>
+          <Box
+          component="div"
+          sx={{
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          }}
+          >
+          <Typography variant="h6" color="text.secondary">
+          {title}
+          </Typography>
+          </Box>
+          <Box
+          component="div"
+          sx={{
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          }}
+          >
+          <Typography variant="body2" color="text.secondary">
+            {content}
+          </Typography>
+            ...
+          </Box>
+          </div>
           </CardContent>
           <CardActions disableSpacing>
             <Chip
