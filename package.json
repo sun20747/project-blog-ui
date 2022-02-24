@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "GA=MyGAcode next dev -p 5000",
-    "build": "GA=MyGAcode next build",
+    "build": "GA=G-CXJ40Q3G9X next build",
     "start": "next start -p 5000",
     "lint": "next lint"
   },

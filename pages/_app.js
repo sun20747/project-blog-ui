@@ -7,7 +7,7 @@ import { StrictMode } from "react";
 
 
 function MyApp({ Component, pageProps }) {
-  
+
 
   // useEffect(()=>{
   //   console.log(path.basename());
@@ -17,7 +17,8 @@ function MyApp({ Component, pageProps }) {
     <StrictMode>
       <Provider store={store}>
         <Head>
-          <title>Web{}</title>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+          <title>Dev Board</title>
         </Head>
         <Component {...pageProps} />
       </Provider>
