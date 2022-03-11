@@ -28,6 +28,7 @@ export default function Index() {
     // setLoading(true);
     setBlogs(data);
     // setLoading(false);
+
   };
 
   const getData = async () => {
@@ -40,9 +41,10 @@ export default function Index() {
   };
 
   useEffect(() => {
-    if (blogs.length < count && count - blogs.length <= 10) {
+    // if (blogs.length < count && count - blogs.length <= 10) {
+      // console.log(category ? category : "N");
       category ? getData() : getDataAll();
-    }
+    // }
   }, [count, category]);
 
   useEffect(() => {
@@ -58,8 +60,8 @@ export default function Index() {
   }, [count]);
 
   // useEffect(() => {
-  //   console.log(loading);
-  // }, [loading]);
+  //   console.log(category ? category : "N");
+  // }, [category]);
 
   return (
     <>

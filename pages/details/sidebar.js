@@ -86,7 +86,7 @@ export default function sidebar({ data }) {
       </Card>
       {blogs ? (
         <Grid container spacing={2} sx={{ marginTop: 1 }}>
-          {blogs.map((blog) => (
+          {blogs.filter((blog) => { return blog['id'] != data['id'] }).map((blog) => (
             <Blogmore {...blog} key={blog.id}></Blogmore>
           ))}
         </Grid>
